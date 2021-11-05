@@ -1,9 +1,5 @@
 # Winget を導入する
-https://atmarkit.itmedia.co.jp/ait/articles/2106/11/news021.html
-https://atmarkit.itmedia.co.jp/ait/articles/2012/03/news017_2.html
-https://qiita.com/tfukumori/items/1c6c6c691fdb5abe8856
-https://astherier.com/blog/2021/08/winget-usage-1/#
-https://reffect.co.jp/html/winget
+
 ## Winget のインストール
 
 ### Microsoft Store の起動
