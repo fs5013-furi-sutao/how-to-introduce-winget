@@ -60,5 +60,416 @@ Winget は、引数を何も付けずに実行するとオンラインヘルプ�
 |export	|インストールされているパッケージのリストをエクスポート |
 |import	|ファイル中の全てのパッケージをインストール |
 
+### オプション指定について
+
+`winget.exe` のサブコマンドは、それぞれ特有のオプション指定が必要になる。それをまとめると以下の表になる。
+
+これらは、それぞれのサブコマンドで詳細な情報を指定するために使われる。
+同じ意味を持つオプションは、原則同じオプションとなる。
+
+例えば、パッケージ ID を指定する `--id` オプションは、`install` `show` `search` `list` `upgrade` の各サブコマンドで共通である。
+サブコマンドの後ろにヘルプオプションを付けると、サブコマンドのオンラインヘルプが表示される。
+
+#### winget.exe のサブコマンドとオプション
+
+<table>
+  <tr>
+    <td id="null">サブコマンド</td>
+    <td id="null">オプション</td>
+    <td id="null">省略表記</td>
+    <td id="null">動作</td>
+  </tr>
+  <tr>
+    <td rowspan="15" id="null">install</td>
+    <td id="null">--query 文字列</td>
+    <td id="null">-q</td>
+    <td id="null">ID、名前、モニカー（別名）、タグでの文字列部分一致検索（オプション省略可）</td>
+  </tr>
+  <tr>
+    <td id="null">--manifest パス</td>
+    <td id="null">-m</td>
+    <td id="null">パッケージのマニフェストのパス</td>
+  </tr>
+  <tr>
+    <td id="null">--id 文字列</td>
+    <td id="null"></td>
+    <td id="null">IDで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--name 文字列</td>
+    <td id="null"></td>
+    <td id="null">名前で結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--moniker 文字列</td>
+    <td id="null"></td>
+    <td id="null">モニカーで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--version バージョン</td>
+    <td id="null">-v</td>
+    <td id="null">指定されたバージョンを使用する。デフォルトは最新バージョン</td>
+  </tr>
+  <tr>
+    <td id="null">--source winget|msstore</td>
+    <td id="null">-s</td>
+    <td id="null">指定されたソースを使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--exact</td>
+    <td id="null">-e</td>
+    <td id="null">完全一致を使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--interactive</td>
+    <td id="null">-i</td>
+    <td id="null">対話式のインストール（ユーザーの入力が必要になる場合がある）</td>
+  </tr>
+  <tr>
+    <td id="null">--silent</td>
+    <td id="null">-h</td>
+    <td id="null">サイレントインストールを要求</td>
+  </tr>
+  <tr>
+    <td id="null">--log＜パス＞</td>
+    <td id="null">-o</td>
+    <td id="null">ログの場所（サポートされている場合）</td>
+  </tr>
+  <tr>
+    <td id="null">--override＜引数＞</td>
+    <td id="null"></td>
+    <td id="null">インストーラーに渡される引数を上書き</td>
+  </tr>
+  <tr>
+    <td id="null">--location＜パス＞</td>
+    <td id="null">-l</td>
+    <td id="null">インストール先（サポートされている場合）</td>
+  </tr>
+  <tr>
+    <td id="null">--force</td>
+    <td id="null"></td>
+    <td id="null">ハッシュのチェックがエラーでも強行</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="10" id="null">show</td>
+    <td id="null">--query＜文字列＞</td>
+    <td id="null">-q</td>
+    <td id="null">ID、名前、モニカー、タグでの文字列部分一致検索（オプション省略可）</td>
+  </tr>
+  <tr>
+    <td id="null">--manifest＜パス＞</td>
+    <td id="null">-m</td>
+    <td id="null">パッケージのマニフェストのパス</td>
+  </tr>
+  <tr>
+    <td id="null">--id＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">ID で結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--name＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">名前で結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--moniker＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">モニカーで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--version＜バージョン＞</td>
+    <td id="null">-v</td>
+    <td id="null">指定されたバージョンを使用する。デフォルトは最新バージョン</td>
+  </tr>
+  <tr>
+    <td id="null">--source winget|msstore</td>
+    <td id="null">-s</td>
+    <td id="null">指定されたソースを使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--exact</td>
+    <td id="null">-e</td>
+    <td id="null">完全一致を使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--versions</td>
+    <td id="null"></td>
+    <td id="null">パッケージの利用可能なバージョンを表示</td>
+  </tr>
+  <tr>
+    <td id="null">-?,--help</td>
+    <td id="null"></td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="6" id="null">source</td>
+    <td id="null">add</td>
+    <td id="null"></td>
+    <td id="null">新しいソースを追加。オプションあり（詳細は-?で表示）</td>
+  </tr>
+  <tr>
+    <td id="null">list</td>
+    <td id="null"></td>
+    <td id="null">現在のソースを一覧表示。オプションあり（詳細は-?で表示）</td>
+  </tr>
+  <tr>
+    <td id="null">update</td>
+    <td id="null"></td>
+    <td id="null">現在のソースを更新。オプションあり（詳細は-?で表示）</td>
+  </tr>
+  <tr>
+    <td id="null">remove</td>
+    <td id="null"></td>
+    <td id="null">現在のソースを削除。オプションあり（詳細は-?で表示）</td>
+  </tr>
+  <tr>
+    <td id="null">reset</td>
+    <td id="null"></td>
+    <td id="null">ソースをリセット。オプションあり（詳細は-?で表示）</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="10" id="null">search</td>
+    <td id="null">--query＜文字列＞</td>
+    <td id="null">-q</td>
+    <td id="null">ID、名前、モニカー、タグでの文字列部分一致検索（オプション省略可）</td>
+  </tr>
+  <tr>
+    <td id="null">--id＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">IDで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--name＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">名前で結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--moniker＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">モニカーで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--tag＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">タグで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--command</td>
+    <td id="null"></td>
+    <td id="null">コマンドによる結果のフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--source winget|msstore</td>
+    <td id="null">-s</td>
+    <td id="null">指定されたソースを使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--count＜数値＞</td>
+    <td id="null">-n</td>
+    <td id="null">指定した数以下の結果を表示</td>
+  </tr>
+  <tr>
+    <td id="null">--exact</td>
+    <td id="null">-e</td>
+    <td id="null">完全一致を使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="10" id="null">list</td>
+    <td id="null">--query＜文字列＞</td>
+    <td id="null">-q</td>
+    <td id="null">ID、名前、モニカー、タグでの文字列部分一致検索（オプション省略可）</td>
+  </tr>
+  <tr>
+    <td id="null">--id＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">IDで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--name＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">名前で結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--moniker＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">モニカーで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--tag＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">タグで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--command＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">コマンドによる結果のフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--source winget|msstore</td>
+    <td id="null">-s</td>
+    <td id="null">指定されたソースを使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--count＜数値＞</td>
+    <td id="null">-n</td>
+    <td id="null">指定した数以下の結果を表示</td>
+  </tr>
+  <tr>
+    <td id="null">--exact</td>
+    <td id="null">-e</td>
+    <td id="null">完全一致を使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="16" id="null">upgrade</td>
+    <td id="null">--query＜文字列＞</td>
+    <td id="null">-q</td>
+    <td id="null">ID、名前、モニカー、タグでの文字列部分一致検索（オプション省略可）</td>
+  </tr>
+  <tr>
+    <td id="null">--manifest＜パス＞</td>
+    <td id="null">-m</td>
+    <td id="null">パッケージのマニフェストのパス</td>
+  </tr>
+  <tr>
+    <td id="null">--id＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">IDで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--name＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">名前で結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--moniker＜文字列＞</td>
+    <td id="null"></td>
+    <td id="null">モニカーで結果をフィルター処理</td>
+  </tr>
+  <tr>
+    <td id="null">--version＜バージョン＞</td>
+    <td id="null">-v</td>
+    <td id="null">指定されたバージョンを使用する。デフォルトは最新バージョン</td>
+  </tr>
+  <tr>
+    <td id="null">--source winget|msstore</td>
+    <td id="null">-s</td>
+    <td id="null">指定されたソースを使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--exact</td>
+    <td id="null">-e</td>
+    <td id="null">完全一致を使用してパッケージを検索</td>
+  </tr>
+  <tr>
+    <td id="null">--interactive</td>
+    <td id="null">-i</td>
+    <td id="null">対話式のインストール（ユーザーの入力が必要になる場合がある）</td>
+  </tr>
+  <tr>
+    <td id="null">--silent</td>
+    <td id="null">-h</td>
+    <td id="null">サイレント インストールを要求</td>
+  </tr>
+  <tr>
+    <td id="null">--log＜パス＞</td>
+    <td id="null">-o</td>
+    <td id="null">ログの場所 （サポートされている場合）</td>
+  </tr>
+  <tr>
+    <td id="null">--override＜引数＞</td>
+    <td id="null"></td>
+    <td id="null">インストーラーに渡される引数を上書き</td>
+  </tr>
+  <tr>
+    <td id="null">--location＜パス＞</td>
+    <td id="null">-l</td>
+    <td id="null">インストール先 （サポートされている場合）</td>
+  </tr>
+  <tr>
+    <td id="null">--force</td>
+    <td id="null"></td>
+    <td id="null">ハッシュのチェックがエラーでも強行</td>
+  </tr>
+  <tr>
+    <td id="null">--all</td>
+    <td id="null"></td>
+    <td id="null">インストール済みの全パッケージを最新版に更新する</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="3" id="null">hash</td>
+    <td id="null">--file</td>
+    <td id="null">-f</td>
+    <td id="null">ハッシュするファイル</td>
+  </tr>
+  <tr>
+    <td id="null">--msix</td>
+    <td id="null">-m</td>
+    <td id="null">入力ファイルをmsixとして扱う</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="2" id="null">validate</td>
+    <td id="null">--manifest＜パス＞</td>
+    <td id="null">-m</td>
+    <td id="null">検証対象のマニフェストのパス</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td id="null">settings</td>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td id="null">features</td>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+  <tr>
+    <td rowspan="2" id="null">experimental</td>
+    <td id="null">--arg</td>
+    <td id="null"></td>
+    <td id="null">デモを目的とした試験的引数</td>
+  </tr>
+  <tr>
+    <td id="null">--help</td>
+    <td id="null">-?</td>
+    <td id="null">サブコマンドのヘルプ表示</td>
+  </tr>
+</table>
 
 
