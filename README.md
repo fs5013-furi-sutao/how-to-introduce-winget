@@ -12,7 +12,7 @@ Windows キーを押して `microsoft store` で検索。Microsoft Store を起�
 
 ### 「アプリ インストーラ―」を入手
 
-Microsoft Store で `wiget` と検索。
+Microsoft Store で `winget` と検索。
 
 検索結果から、「アプリ インストーラー」を選択。
 
@@ -46,23 +46,23 @@ Winget は、引数を何も付けずに実行するとオンラインヘルプ�
 
 ### Winget のサブコマンド
 
-|サブコマンド	|説明 |
-|:-- |:-- |
-|-v／--version	|wingetのバージョンを表示 |
-|--info	|wingetの情報を表示 |
-|install	|指定されたパッケージをインストール |
-|show	|パッケージに関する情報を表示 |
-|source	|パッケージのソースの管理 |
-|search	|アプリの基本情報を見つけて表示 |
-|list	|インストール済みパッケージを表示 |
-|upgrade	|指定されたパッケージをアップグレード |
-|uninstall	|指定されたパッケージをアンインストール |
-|hash	|インストーラーファイルをハッシュするヘルパー |
-|validate	|マニフェストファイルを検証 |
-|settings	|設定（settings.josnファイル）を開く |
-|features	|試験的な機能の状態を表示 |
-|export	|インストールされているパッケージのリストをエクスポート |
-|import	|ファイル中の全てのパッケージをインストール |
+| サブコマンド  | 説明                                                   |
+| :------------ | :----------------------------------------------------- |
+| -v／--version | wingetのバージョンを表示                               |
+| --info        | wingetの情報を表示                                     |
+| install       | 指定されたパッケージをインストール                     |
+| show          | パッケージに関する情報を表示                           |
+| source        | パッケージのソースの管理                               |
+| search        | アプリの基本情報を見つけて表示                         |
+| list          | インストール済みパッケージを表示                       |
+| upgrade       | 指定されたパッケージをアップグレード                   |
+| uninstall     | 指定されたパッケージをアンインストール                 |
+| hash          | インストーラーファイルをハッシュするヘルパー           |
+| validate      | マニフェストファイルを検証                             |
+| settings      | 設定（settings.josnファイル）を開く                    |
+| features      | 試験的な機能の状態を表示                               |
+| export        | インストールされているパッケージのリストをエクスポート |
+| import        | ファイル中の全てのパッケージをインストール             |
 
 ### オプション指定について
 
@@ -476,4 +476,126 @@ Winget は、引数を何も付けずに実行するとオンラインヘルプ�
   </tr>
 </table>
 
+## アプリの検索
 
+``` console
+winget search chrome
+```
+
+`実行結果: `
+``` console
+名前                       ID                         バージョン    一致            ソース
+-------------------------------------------------------------------------------------------
+Streamer to Chromecast     9MTTSZ74DBRS               Unknown                       msstore
+Google Chrome              Google.Chrome              95.0.4638.69  Moniker: chrome winget
+Google Chrome Dev          Google.Chrome.Dev          97.0.4681.0   Command: chrome winget
+Google Chrome Beta         Google.Chrome.Beta         96.0.4664.35  Command: chrome winget
+Stack                      stack.stack                3.32.0        Tag: chrome     winget
+Brave                      BraveSoftware.BraveBrowser 95.1.31.88    Tag: Chrome     winget
+Chrome Remote Desktop Host Google.ChromeRemoteDesktop 94.0.4606.27  Tag: chrome     winget
+Ginger Chrome              Saxo_Broko.GingerChrome    93.0.4529.0                   winget
+115浏览器                  115.115Chrome              25.0.0.3                      winget
+360极速浏览器              360.360Chrome              13.0.2256.0                   winget
+Chromium Installer         macchrome.winchrome        89.0.4389.114                 winget
+Google Chrome Canary       Google.Chrome.Canary       97.0.4690.0                   winget
+```
+
+## アプリのインストール
+
+``` console
+winget install  -e --id Google.Chrome
+```
+
+## アプリのアンインストール
+
+``` console
+winget uninstall Google.Chrome
+```
+
+## インストールされているアプリの情報を取得
+
+### 対象アプリを指定して
+
+``` console
+winget list chrome
+```
+
+`実行結果: `
+``` console
+名前          ID            バージョン   ソース
+------------------------------------------------
+Google Chrome Google.Chrome 95.0.4638.69 winget
+```
+
+### すべてのアプリを表示
+
+``` console
+winget list
+```
+
+## インストールされているアプリのエクスポート
+
+``` console
+winget export -o ./my-winget-packages.json
+```
+
+## JSON ファイルから指定アプリをインポート
+
+``` console
+winget import -i ./my-winget-packages.json
+```
+
+## インポート/エクスポートのファイル形式
+
+``` json
+{
+	"$schema": "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate": "2021-11-05T22:03:33.775-00:00",
+	"Sources": [
+		{
+			"Packages": [
+				{
+					"PackageIdentifier": "Canonical.Ubuntu.2004"
+				},
+				{
+					"PackageIdentifier": "Discord.Discord"
+				},
+				{
+					"PackageIdentifier": "Docker.DockerDesktop"
+				},
+				{
+					"PackageIdentifier": "Git.Git"
+				},
+				{
+					"PackageIdentifier": "LINE.LINE"
+				},
+				{
+					"PackageIdentifier": "Microsoft.WindowsTerminal"
+				},
+				{
+					"PackageIdentifier": "WinMerge.WinMerge"
+				},
+				{
+					"PackageIdentifier": "SlackTechnologies.Slack"
+				},
+				{
+					"PackageIdentifier": "Zoom.Zoom"
+				},
+				{
+					"PackageIdentifier": "Microsoft.OpenJDK.11"
+				},
+				{
+					"PackageIdentifier": "Google.Chrome"
+				}
+			],
+			"SourceDetails": {
+				"Argument": "https://winget.azureedge.net/cache",
+				"Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name": "winget",
+				"Type": "Microsoft.PreIndexed.Package"
+			}
+		}
+	],
+	"WinGetVersion": "1.1.12653"
+}
+```
